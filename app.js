@@ -33,13 +33,21 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/events", (req, res) => {
-  const evnt = new Events({
+  const event = new Events({
     title: req.body.event.title,
     date: req.body.event.date,
   });
-  evnt.save().then(() => {
-    console.log("One entry added");
-  });
+
+  event
+    .save()
+    .then(() => {
+      console.log("One entry added");
+      res.status(201).send("Event added successfully");
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error adding event");
+    });
 });
 
 app.get("/api/events", (req, res) => {
