@@ -34,8 +34,8 @@ app.get("/", (req, res) => {
 
 app.post("/api/events", (req, res) => {
   const event = new Events({
-    title: req.body.event.title,
-    date: req.body.event.date,
+    title: req.body.title,
+    date: req.body.date,
   });
 
   event
